@@ -5,7 +5,13 @@
 {% block content %}
     <section class="section-content padding-y bg">
         <div class="container">
+            {% if not cart_items %}
+                <h2 style="text-align: center;">Your Shopping Cart is Empty</h2>
+                <a href="{% url 'store:store' %}">
+                    <img style="width:40%; margin-left: 30%;" src="https://i.pinimg.com/originals/66/22/ab/6622ab37c6db6ac166dfec760a2f2939.gif" alt="Shopping Cart IMG">
+                </a>
                 
+            {% else %}
             <div class="row">
                 <aside class="col-lg-9">
             <div class="card">
@@ -28,7 +34,7 @@
                                 <figure class="itemside align-items-center">
                                     <div class="aside"><img src="{{ cart_item.product.images.url }}" class="img-sm"></div>
                                     <figcaption class="info">
-                                        <a href="#" class="title text-dark">{{ cart_item.product.product_name }}</a>
+                                        <a href="{{ cart_item.product.get_url }}" class="title text-dark">{{ cart_item.product.product_name }}</a>
                                         <p class="text-muted small">Color: <br> Size: </p>
                                     </figcaption>
                                 </figure>
@@ -49,11 +55,11 @@
                             <td> 
                                 <div class="price-wrap"> 
                                     <var class="price">${{ cart_item.sub_total }}</var> 
-                                    <!-- <small class="text-muted"> $315.20 each </small>  -->
+                                    <small class="text-muted">${{ cart_item.product.price }} each </small> 
                                 </div> <!-- price-wrap .// -->
                             </td>
                             <td class="text-right"> 
-                            <a href="{% url 'carts:remove_cart_item' cart_item.product.id %}" class="btn btn-danger"> Remove</a>
+                            <a href="{% url 'carts:remove_cart_item' cart_item.product.id %}" class="btn btn-outline-danger"> Remove</a>
                             </td>
                         </tr>
                     {% endfor %}
@@ -90,6 +96,7 @@
                 </aside> <!-- col.// -->
             
             </div> <!-- row.// -->
+            {% endif %}
         
         </div> <!-- container .//  -->
     </section>
