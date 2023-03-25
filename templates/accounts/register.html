@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="section-content padding-y">
+
+        <div class="card mx-auto" style="max-width:520px; margin-top:40px;">
+          <article class="card-body">
+            <header class="mb-4"><h4 class="card-title">Sign up</h4></header>
+
+            <!-- FORM START -->
+            <form action="{% url 'accounts:register' %}" method="POST">
+                {% csrf_token %}
+                    <div class="form-group">
+                        <label>Username</label>
+                        {{ form.username }}
+                    </div> 
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label>First name</label>
+                            {{ form.first_name }}
+                        </div> 
+                        <div class="col form-group">
+                            <label>Last name</label>
+                            {{ form.last_name }}
+                        </div> 
+                    </div> 
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        {{ form.email }}
+                        <small class="form-text text-muted">We'll keep all your data confidential.</small>
+                    </div> 
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label>Phone number (optional)</label>
+                          {{ form.phone_number }}
+                        </div> 
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Password</label>
+                            {{ form.password }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Confirm password</label>
+                            {{ form.confirm_password }}
+                        </div> 
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Register  </button>
+                    </div>   
+                
+                <h4 class="text-warning">{{ form.email.errors }}</h4>
+                <h4 class="text-warning">{{ form.non_field_errors }}</h4>
+                </form>
+                <!-- FORM END -->
+
+            </article>
+        </div> 
+
+        <p class="text-center mt-4">Have an account? <a href="">Log In</a></p>
+        <br><br> 
+
+    </section>
+{% endblock %}
