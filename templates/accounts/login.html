@@ -2,38 +2,48 @@
 
 {% block content %}
 
-    <section class="section-content padding-y" style="min-height:84vh;" id="sign_in_page">
+    <section class="section-content padding-y" style="min-height:84vh;">
 
-        <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
-          <div class="card-body">
+        {% if request.GET.command == 'verification' %}
 
-            <h4 class="card-title mb-4">Sign in</h4>
+            <div class="container mx-auto alert alert-info text-center" role="alert" style="max-width: 1024px; margin-top:100px;">
+                We have sent you a verification email at [{{ request.GET.email }}]. Please check your email for the activation link.
+                <br><br>
+                Already verifid? <a href="{% url 'accounts:login' %}">Login</a>
+            </div>
 
-            <form action="{% url 'accounts:login' %}" method="POST">
-                {% csrf_token %}
-                <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Email Address" name="email">
-                </div>
+        {% else %}
 
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" name="password">
-                </div> 
-                
-                <div class="form-group">
-                    <a href="#" class="float-right">Forgot password?</a> 
-                
-                </div> 
+            <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
+            <div class="card-body">
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block"> Login  </button>
-                </div>    
-            </form>
+                <h4 class="card-title mb-4">Sign in</h4>
 
-          </div> 
-        </div> 
-    
-         <p class="text-center mt-4">Don't have account? <a href="{% url 'accounts:register' %}">Sign up</a></p>
-         <br><br>
+                <form action="{% url 'accounts:login' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Address" name="email">
+                    </div>
 
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" name="password">
+                    </div> 
+                    
+                    <div class="form-group">
+                        <a href="#" class="float-right">Forgot password?</a> 
+                    
+                    </div> 
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Login  </button>
+                    </div>    
+                </form>
+
+            </div> 
+            </div> 
+        
+            <p class="text-center mt-4">Don't have account? <a href="{% url 'accounts:register' %}">Sign up</a></p>
+            <br><br>
+         {% endif %}
     </section>
 {% endblock %}
