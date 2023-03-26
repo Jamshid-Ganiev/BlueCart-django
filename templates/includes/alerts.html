@@ -1,8 +1,8 @@
 {% if messages %}
-    <div class="mt-5 messages"></div>
+    <div class="messages my-3"></div>
         {% for message in messages %}
             
-            <div class="alert alert-{{ message.tags }}" role="alert" id="message">
+            <div class="alert alert-{{ message.tags }} text-center text-dark" role="alert" id="message">
                 {{ message }}
             </div>
             
