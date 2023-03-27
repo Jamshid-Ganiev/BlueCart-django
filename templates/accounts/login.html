@@ -7,14 +7,15 @@
         {% if request.GET.command == 'verification' %}
 
             <div class="container mx-auto alert alert-info text-center" role="alert" style="max-width: 1024px; margin-top:100px;">
-                We have sent you a verification email at [{{ request.GET.email }}]. Please check your email for the activation link.
-                <br><br>
+                <h4> We have sent you a verification email at  <strong style="color: darkorange;"> {{ request.GET.email }}</strong>. <br>
+                     Please check your email for the activation link.</h4>
+                <br>
                 Already verifid? <a href="{% url 'accounts:login' %}">Login</a>
             </div>
 
         {% else %}
 
-            <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
+            <div class="card mx-auto" style="max-width: 380px; margin-top:90px;">
             <div class="card-body">
 
                 <h4 class="card-title mb-4">Sign in</h4>
@@ -30,7 +31,7 @@
                     </div> 
                     
                     <div class="form-group">
-                        <a href="#" class="float-right">Forgot password?</a> 
+                        <a href="{% url 'accounts:forgotPassword' %}" class="float-right">Forgot password?</a> 
                     
                     </div> 
 
