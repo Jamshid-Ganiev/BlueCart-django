@@ -67,25 +67,27 @@
                                             </form>
 
                                         </div>
-                                    </div> <!-- input-group.// -->
+                                    </div> 
                                 </div> 
                             </td>
                             <td> 
                                 <div class="price-wrap"> 
                                     <var class="price">${{ cart_item.sub_total }}</var> 
                                     <small class="text-muted">${{ cart_item.product.price }} each </small> 
-                                </div> <!-- price-wrap .// -->
+                                </div>
+
                             </td>
                             <td class="text-right"> 
                             <a href="{% url 'carts:remove_cart_item' cart_item.product.id cart_item.id %}" onclick="return confirm('Are you sure you want to remove this from your cart?')" class="btn btn-outline-danger"> Remove</a>
                             </td>
                         </tr>
+
                     {% endfor %}
                 </tbody>
             </table>
-            </div> <!-- card.// -->
+            </div> 
             
-                </aside> <!-- col.// -->
+                </aside> 
                 <aside class="col-lg-3">
             
                     <div class="card">
@@ -106,16 +108,16 @@
                         <p class="text-center mb-3">
                             <img src="{% static 'images/misc/payments.png' %}" height="27">
                         </p>
-                        <a href="./place-order.html" class="btn btn-primary btn-block"> Checkout </a>
+                        <a href="{% url 'carts:checkout' %}" class="btn btn-primary btn-block"> Checkout </a>
                         <a href="{% url 'store:store' %}" class="btn btn-light btn-block">Continue Shopping</a>
-                    </div> <!-- card-body.// -->
-                    </div> <!-- card.// -->
+                    </div>
+                    </div> 
             
-                </aside> <!-- col.// -->
+                </aside> 
             
-            </div> <!-- row.// -->
+            </div> 
             {% endif %}
         
-        </div> <!-- container .//  -->
+        </div> 
     </section>
 {% endblock %}

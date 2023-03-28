@@ -4,7 +4,9 @@ from .forms import RegistrationForm
 from .models import Account
 from django.contrib import messages
 from django.contrib import auth
-from django.contrib.auth.decorators import login_required 
+from django.contrib.auth.decorators import login_required
+from carts.views import _cart_id 
+from carts.models import Cart, CartItem
 
 # VERIFICATION EMAIL
 from django.contrib.sites.shortcuts import get_current_site
@@ -58,6 +60,10 @@ def register(request):
 
 #LOGIN
 def login(request):
+
+    if 'next' in request.GET:
+        messages.warning(request, 'Please log in to complete checkout.')
+
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
@@ -65,9 +71,22 @@ def login(request):
         user = auth.authenticate(email=email, password=password)
 
         if user is not None:
+            try:
+                cart = Cart.objects.get(cart_id=_cart_id(request))
+                is_cart_item_exists = CartItem.objects.filter(cart=cart).exists()
+
+                if is_cart_item_exists:
+                    cart_item = CartItem.objects.filter(cart=cart)
+
+                    for item in cart_item:
+                        item.user = user
+                        item.save()
+            except:
+                pass
+
             auth.login(request, user)
-            messages.success(request, 'You have successfully loggin in!')
-            return redirect('home')
+            messages.success(request, 'You have successfully logged in!')
+            return redirect('accounts:dashboard')
         else:
             messages.warning(request, 'Your Email or Password is Wrong. Please Try Again!')
             return redirect('accounts:login')
