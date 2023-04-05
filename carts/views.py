@@ -29,7 +29,7 @@ def cart(request, total=0, quantity=0, cart_items=None):
             total += (cart_item.product.price * cart_item.quantity)
             quantity += cart_item.quantity
 
-        tax = (0.4 * total) //100
+        tax = (0.5 * total) //100
         total_after_tax = total - tax
     except:
         pass
