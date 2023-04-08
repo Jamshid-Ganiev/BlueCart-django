@@ -12,4 +12,7 @@ Ecommerce web app built in Python &amp; Django
 ![image](https://user-images.githubusercontent.com/84252587/227508386-abedf347-5d78-4b24-acad-6725cf07c765.png)
 > image 5
 ![image](https://user-images.githubusercontent.com/84252587/227508044-e624f59b-eff2-4975-9d72-8e0ffc10b622.png)
+> image 6 | Payment via PayPal
+![image](https://user-images.githubusercontent.com/84252587/230181353-d40be0bd-8498-4684-b896-e62075684008.png)
+
 
