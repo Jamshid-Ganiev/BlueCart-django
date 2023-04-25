@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="section-conten padding-y bg">
+
+    <div class="container">
+        <div class="row">
+        {% include 'includes/dashboard_sidebar.html' %}
+        <main class="col-md-9">
+            <article class="card">
+            <header class="card-header">
+                <strong class="d-inline-block mr-3">Update Profile:</strong>
+            </header>
+
+            <div class="card-body">
+                <div class="row"> 
+                    <div class="col-md-12">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <div class="form-row mb-3">
+                                <div class="col-md-6">
+                                    <label for="username">Username:</label>
+                                    <input type="text" name="username" id="username" class="form-control" value="{{ user.username }}" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email">Email:</label>
+                                    <input type="email" name="email" id="email" class="form-control" value="{{ user.email }}" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row mb-3">
+                                <div class="col-md-6">
+                                    <label for="first_name">First Name:</label>
+                                    <input type="text" name="first_name" id="first_name" class="form-control" value="{{ user.first_name }}" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="last_name">Last Name:</label>
+                                    <input type="text" name="last_name" id="last_name" class="form-control" value="{{ user.last_name }}" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row mb-3">
+                                <div class="col-md-6">
+                                    <label for="phone_number">Phone Number:</label>
+                                    <input type="text" name="phone_number" id="phone_number" class="form-control" value="{{ user.phone_number }}">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="address_line">Address:</label>
+                                    <input type="text" name="address_line" id="address_line" class="form-control" value="{{ user.userprofile.address_line }}">
+                                </div>
+                            </div>
+
+                            <div class="form-row mb-3">
+                                <div class="col-md-6">
+                                    <label for="profile_picture">Profile Picture:</label>
+                                    <input type="file" name="profile_picture" id="profile_picture" class="form-control-file">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mt-3">
+                                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                                </div>
+                            </div>
+                        </form>
+                        
+                    
+                    </div>
+                </div> 
+            </div> 
+            </article> 
+        </main>
+    </div>
+    
+    
+    </section>
+
+{% endblock %}
