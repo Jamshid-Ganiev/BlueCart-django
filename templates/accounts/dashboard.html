@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 
 <section class="section-conten padding-y bg">
@@ -21,15 +21,15 @@
                             <div class="card-body">
                                 <h5 class="card-title">Total Orders:</h5>
                                 <h4>{{ orders_count }}</h4>
-                                <a href="">View Orders</a>
+                                <a href="{% url 'accounts:my_orders' %}">View Orders</a>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="card">
-                            <div class="card-body">
-                                <img src="https://www.w3schools.com/howto/img_avatar.png" alt="User Profile Picture" width="70" style="border-radius:54%">
+                            <div class="card-body bg-dark text-light text-center">
+                                <img src="{{userprofile.profile_picture.url}}" class="my-3" alt="User Profile Picture" width="110" style="border-radius:54%">
                                 <p> <i class="fa fa-envelope" aria-hidden="true"></i> {{ user.email }}</p>
                                 <p><i class="fa fa-phone-square" aria-hidden="true"></i> {{ user.phone_number }}</p>
                             </div>

@@ -83,7 +83,7 @@ class UserProfile(models.Model):
     profile_picture = models.ImageField(default="/userProfile/default_profile_pic.png", upload_to='userProfile/')
 
     def __str__(self):
-        return self.user.first_name
+        return self.user.username
     
     def full_address(self):
         return self.address_line
