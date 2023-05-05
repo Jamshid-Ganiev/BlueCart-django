@@ -61,3 +61,7 @@ ul.thumb li img{
     width: 80px;
     border: 1px solid grey;
 }
+
+body{
+    background-color: #E3E6E6;
+}
