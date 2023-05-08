@@ -12,6 +12,7 @@ class Product(models.Model):
     description   = models.TextField(max_length=500, blank=True)
     price         = models.IntegerField()
     images        = models.ImageField(upload_to='photos/products')
+    colors        = models.ManyToManyField("Color")
     stock         = models.IntegerField()
     is_available  = models.BooleanField()
     category      = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -37,6 +38,15 @@ class Product(models.Model):
         if reviews['count'] is not None:
             count = int(reviews['count'])
         return count
+    
+    def get_colors(self):
+        return list(self.variation_set.colors().values_list('variation_value', flat=True))
+    
+class Color(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
         
 class VariationManager(models.Manager):
     def colors(self):

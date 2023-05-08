@@ -58,6 +58,7 @@
       
       
           <hr>
+          {% if single_product.variation_set.colors and single_product.variation_set.sizes %}
           <div class="row mx-5 my-2">
               <div class="item-option-select">
 
@@ -80,6 +81,22 @@
                   </select>
               </div>
           </div>
+          {% else %}
+
+            {% if single_product.colors.all %}
+                <div class="item-option-select">
+
+                    <h4>Color:</h4>
+                    <select name="color" class="form-control" required>
+                    <option value="" disabled selected>Select</option>
+                    {% for color in single_product.colors.all %}
+                        <option value="{{ color.name | lower }}">{{ color.name | capfirst }}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+
+          {% endif %}
 
           <hr>
 

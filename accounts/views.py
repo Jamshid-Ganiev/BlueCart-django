@@ -121,7 +121,7 @@ def login(request):
             auth.login(request, user)
             messages.success(request, 'You have successfully logged in!')
             url = request.META.get('HTTP_REFERER')
-            return redirect('accounts:dashboard')
+            return redirect('home')
             try:
                 query = requests.utils.urlparse(url).query
                 # next=/cart/checkout/
